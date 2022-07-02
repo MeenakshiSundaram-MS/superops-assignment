@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native'
 import React, {useState} from 'react'
-import { IconButton, PrimaryButton, secondaryButton } from './Button'
 import {useNavigation} from '@react-navigation/native'
-import assets from '../constants/assets'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Card = ({profileImage, author, time, data, Press, dataID}) => {

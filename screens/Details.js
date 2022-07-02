@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, Alert, Platform } from 'react-native'
-import React,{useState} from 'react'
+import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useRoute } from '@react-navigation/native';
 import Home from './Home';

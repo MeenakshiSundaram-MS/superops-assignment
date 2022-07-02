@@ -1,6 +1,5 @@
 import { View, Text, TextInput, StyleSheet, Image, Platform } from 'react-native'
 import React from 'react'
-import assets from '../constants/assets'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HomeHeader = ({onSearch}) => {

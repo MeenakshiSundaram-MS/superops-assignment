@@ -2,6 +2,7 @@ import { View, Text, Image, SafeAreaView, FlatList, Alert, Modal, StyleSheet, To
 import React, { useState, useEffect } from 'react'
 import HomeHeader from '../components/HomeHeader'
 import Card from '../components/Card'
+import Loading from '../components/Loading'
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
     const [data1, setData1] = useState([])
     const [token, setToken] = useState()
     const [finalData, setFinalData] = useState(data1)
+    const [isLoading, setIsLoading] = useState(false)
    
 
       useEffect(() => {
@@ -22,13 +24,14 @@ const Home = () => {
     )
     .then((res) => res.json())
     .then((data) => {
-      
+        setIsLoading(false)
         setData1([...data1,...data.messages])
         setFinalData([...data1,...data.messages])
         setToken(data.pageToken)
     })
     .catch((error) => {
-        console.error(error);});
+      setIsLoading(true)
+      console.error(error);});
   
   const handleDelete = (id) => {
     const hdFilteredData = finalData.filter(item => item.id !== id);
@@ -47,9 +50,13 @@ const Home = () => {
 
   
           return(
-            <View>
+            <>
+            { isLoading ? <Loading/> :<View>
+               
                 <Card profileImage={{uri: `${imagUrl}${item.author.photoUrl}`}} author={item.author.name} time={final} data={item} Press={() => handleDelete(id)} />
             </View>
+  }
+            </>
         )
 
       
@@ -72,10 +79,8 @@ const Home = () => {
 
     
   return (
-    <SafeAreaView style={{flex: 1}}>
-       <View style={styles.centeredView}>
-    </View>
-    <View>
+    <SafeAreaView style={{flex: 1, marginBottom: 5}}>
+    <View style={{marginBottom: 5}}>
       <FlatList
       data={finalData}
       onEndReached={getAPIData}
