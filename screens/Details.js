@@ -11,8 +11,14 @@ const DetailsHeader = ({navigation}) => {
   const buttonValue = route.params.pressed
 
   const backButton = () => {
-    return navigation.navigate(Home)
-  }
+    if (navigation.canGoBack()){
+      navigation.goBack()
+      console.log('h1')
+    }
+else{
+    navigation.navigate(Home)
+    console.log('h2')
+}}
 
   const buttonPressHandler = () => {
     Alert.alert("You can only mark/unmark your favourite on Homescreen")
